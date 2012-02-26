@@ -234,11 +234,11 @@
 		        title : 'Accordion and TreePanel',
 		        collapsible: true,
 		        layout: 'accordion',
-
-		        x: 690, y: 830,
-
-		        width : 450,
-		        height: 240,
+				region:'west',
+				margins:'5 0 5 5',
+				width: 210,
+				split:true,
+		        
 
 		        bodyStyle: {
 		            'background-color': '#eee'
@@ -259,15 +259,7 @@
             var viewport = Ext.create('Ext.Viewport', {
                 layout:'border',
                 items:[
-                    accordion, {
-                    region:'west',
-                    margins:'5 0 5 5',
-					width: 210,
-					split:true,
-                    cls:'empty',
-                    bodyStyle:'background:#f1f1f1',
-                    html:'<br/><br/>&lt;empty center panel&gt;'
-                }]
+                    accordion,accConfig]
             });
         });
     </script>
