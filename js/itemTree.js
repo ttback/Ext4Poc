@@ -1,20 +1,32 @@
-var tree = Ext.create('Ext.tree.Panel', {
-    title: 'TreePanel',
+var itemTreeStore = Ext.create('Ext.data.TreeStore', {
     root: {
         text: 'Root Node',
         expanded: true,
         children: [{
-            text: 'Item 1',
+            text: 'Root Item 1',
             leaf: true
         }, {
-            text: 'Item 2',
+            text: 'Root Item 2',
             leaf: true
         }, {
-            text: 'Folder',
+            text: 'Category 1',
             children: [{
-                text: 'Item 3',
+                text: 'Item 1',
+                leaf: true
+            }]
+        }, {
+            text: 'Category 2',
+            children: [{
+                text: 'Item 1',
                 leaf: true
             }]
         }]
     }
+});
+
+
+var itemTree = Ext.create('Ext.tree.Panel', {
+    title: 'TreePanel',
+	rootVisible: false,
+    store: itemTreeStore
 });

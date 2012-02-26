@@ -18,7 +18,7 @@
 		        },
 
 		        items: [
-		            tree, {
+		            itemTree, {
 		                title: 'Item 2',
 		                html: 'Some content'
 		            }, {

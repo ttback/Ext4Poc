@@ -1,8 +1,8 @@
 //Page_size for paging
 var PAGE_SIZE = 15;
 
-// sample static data for the store
-var myData = [
+// sample static data for the stockStore
+var stockData = [
     ['3m Co',                               71.72, 0.02,  0.03,  '9/1 12:00am'],
     ['Alcoa Inc',                           29.01, 0.42,  1.47,  '9/1 12:00am'],
     ['Altria Group Inc',                    83.81, 0.28,  0.34,  '9/1 12:00am'],
@@ -60,8 +60,8 @@ function pctChange(val) {
     return val;
 }
 
-// create the data store
-var store = Ext.create('Ext.data.ArrayStore', {
+// create the data stockStore
+var stockStore = Ext.create('Ext.data.ArrayStore', {
     fields: [
        {name: 'company'},
        {name: 'price',      type: 'float'},
@@ -73,18 +73,20 @@ var store = Ext.create('Ext.data.ArrayStore', {
         property : 'company',
         direction: 'ASC'
     }],
-    data: myData,
+    data: stockData,
 	pageSize: PAGE_SIZE
 });
 
-store.on('load', function(store, records, successful, operation) {
-        this.loadData(myData.slice((this.currentPage-1)*PAGE_SIZE, (this.currentPage)*PAGE_SIZE));
-    },store);
 
-store.load();
+//Fixed loading without using Ext.ux.data.PagingStore
+stockStore.on('load', function(stockStore, records, successful, operation) {
+        this.loadData(stockData.slice((this.currentPage-1)*PAGE_SIZE, (this.currentPage)*PAGE_SIZE));
+    },stockStore);
+
+stockStore.load();
 
 var pagingBar = Ext.createWidget('pagingtoolbar', {
-    store      : store,
+    store: stockStore,
     displayInfo: true,
     displayMsg : 'Displaying topics {0} - {1} of {2}',
 	emptyMsg: "No topics to display"
@@ -93,7 +95,7 @@ var pagingBar = Ext.createWidget('pagingtoolbar', {
 // create the Grid
 var stockGrid = Ext.create('Ext.grid.Panel', {
     hideCollapseTool: true,
-    store: store,
+    store: stockStore,
     columnLines: true,
 	loadMask: true,
     columns: [
