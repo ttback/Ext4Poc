@@ -1,5 +1,4 @@
-
-
+//Stock Grid
 var item1 = stockGrid;
 
     var item2 = Ext.create('Ext.Panel', {
