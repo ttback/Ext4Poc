@@ -113,7 +113,7 @@ var stockGrid = Ext.create('Ext.grid.Panel', {
             xtype: 'actioncolumn',
             width: 50,
             items: [{
-                icon   : '../shared/icons/fam/delete.gif',  // Use a URL in the icon config
+                icon   : 'extJS/shared/icons/fam/delete.gif',  // Use a URL in the icon config
                 tooltip: 'Sell stock',
                 handler: function(stockGrid, rowIndex, colIndex) {
                     var rec = store.getAt(rowIndex);
