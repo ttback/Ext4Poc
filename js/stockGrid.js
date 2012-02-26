@@ -66,7 +66,19 @@ var store = Ext.create('Ext.data.ArrayStore', {
        {name: 'pctChange',  type: 'float'},
        {name: 'lastChange', type: 'date', dateFormat: 'n/j h:ia'}
     ],
-    data: myData
+    sorters: [{
+        property : 'company',
+        direction: 'ASC'
+    }],
+    data: myData,
+	pageSize: 10
+});
+
+var pagingBar = Ext.createWidget('pagingtoolbar', {
+    store      : store,
+    displayInfo: true,
+    displayMsg : 'Displaying topics {0} - {1} of {2}',
+	emptyMsg: "No topics to display"
 });
 
 // create the Grid
@@ -74,6 +86,7 @@ var stockGrid = Ext.create('Ext.grid.Panel', {
     hideCollapseTool: true,
     store: store,
     columnLines: true,
+	loadMask: true,
     columns: [
         {
             text     : 'Company',
@@ -136,7 +149,8 @@ var stockGrid = Ext.create('Ext.grid.Panel', {
             }]
         }
     ],
-    title: 'Array Grid (Click header to collapse)',
+	bbar: pagingBar,
+    title: 'Stock Grid (Click header to collapse)',
     viewConfig: {
         stripeRows: true
     }
