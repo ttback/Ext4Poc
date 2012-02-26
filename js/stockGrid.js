@@ -1,3 +1,6 @@
+//Page_size for paging
+var PAGE_SIZE = 15;
+
 // sample static data for the store
 var myData = [
     ['3m Co',                               71.72, 0.02,  0.03,  '9/1 12:00am'],
@@ -71,8 +74,14 @@ var store = Ext.create('Ext.data.ArrayStore', {
         direction: 'ASC'
     }],
     data: myData,
-	pageSize: 10
+	pageSize: PAGE_SIZE
 });
+
+store.on('load', function(store, records, successful, operation) {
+        this.loadData(myData.slice((this.currentPage-1)*PAGE_SIZE, (this.currentPage)*PAGE_SIZE));
+    },store);
+
+store.load();
 
 var pagingBar = Ext.createWidget('pagingtoolbar', {
     store      : store,
