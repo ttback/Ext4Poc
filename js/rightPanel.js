@@ -1,5 +1,7 @@
-//Stock Grid
-var item1 = stockGrid;
+
+function getRightPanel() {
+	//Stock Grid
+	var item1 = Ext.create('Ext4Poc.ui.stockGrid');
 
     var item2 = Ext.create('Ext.Panel', {
         title: 'Accordion Item 2',
@@ -32,3 +34,5 @@ var item1 = stockGrid;
         layout:'accordion',
         items: [item1, item2, item3, item4, item5]
     });
+	return rightPanel;
+}
